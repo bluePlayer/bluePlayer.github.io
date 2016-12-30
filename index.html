@@ -26,6 +26,7 @@
         <li>D3js Exercises: </li>
         <li><input type="button" id="d3ShowReel" value="D3 Show Reel" /></li>
         <li><input type="button" id="barChartsCat" value="Bar Charts" /></li>
+        <li><input type="button" id="forceDirGraphCat" value="Force Directed Graph" /></li>
     </ul>
     <ul id="barChartsUl">
         <li>Bar Charts: </li>
@@ -35,7 +36,11 @@
         <li><input type="button" id="sortableTableWithBars" value="Sortable Table with Bars" /></li>
         <li><input type="button" id="stackedBarChart" value="Stacked Bar Chart" /></li>
     </ul>
-    <iframe id="iframe" src="http://it.mk/" width="1280" height="800"></iframe>
+    <ul id="forceDirGraphUl">
+        <li>Bar Charts: </li>
+        <li><input type="button" id="forceDirGraphMultiRel" value="Force Layout - Multiple Relations" /></li>
+    </ul>
+    <iframe id="iframe" src="projects/Phaser/wml/index.html" width="1280" height="800"></iframe>
 
     <script src="js/jquery.min.js"></script>
     <script>
@@ -91,6 +96,19 @@
             } else {
                 $("#barChartsUl").show();
             }
+        });
+
+        $("#forceDirGraphUl").hide();
+        $("#forceDirGraphCat").click(function (event) {
+            if ($("#forceDirGraphUl").is(":visible")) {
+                $("#forceDirGraphUl").hide();
+            } else {
+                $("#forceDirGraphUl").show();
+            }
+        });
+
+        $("#forceDirGraphMultiRel").click(function (event) {
+            $("#iframe").attr("src", "projects/D3/ForceDirectedGraph/ForceLayoutClickToGroupNodesMultiRelations/index.html");
         });
     </script>
 </body>
