@@ -1,0 +1,35 @@
+{
+"frames": {
+	"guide1.png": {
+		"frame": {"x":481, "y":0, "w":480, "h":720},
+		"spriteSourceSize": {"x":0,"y":0,"w":480,"h":720},
+		"sourceSize": {"w":480,"h":720}
+	},
+	"guide2.png": {
+		"frame": {"x":481, "y":721, "w":480, "h":720},
+		"spriteSourceSize": {"x":0,"y":0,"w":480,"h":720},
+		"sourceSize": {"w":480,"h":720}
+	},
+	"guide3.png": {
+		"frame": {"x":962, "y":0, "w":480, "h":720},
+		"spriteSourceSize": {"x":0,"y":0,"w":480,"h":720},
+		"sourceSize": {"w":480,"h":720}
+	},
+	"guide4.png": {
+		"frame": {"x":0, "y":721, "w":480, "h":720},
+		"spriteSourceSize": {"x":0,"y":0,"w":480,"h":720},
+		"sourceSize": {"w":480,"h":720}
+	},
+	"guide5.png": {
+		"frame": {"x":0, "y":0, "w":480, "h":720},
+		"spriteSourceSize": {"x":0,"y":0,"w":480,"h":720},
+		"sourceSize": {"w":480,"h":720}
+	}
+
+},
+"meta": {
+	"image": "guidesSheet.png",
+	"size": {"w": 2048, "h": 2048},
+	"scale": "1"
+}
+}
