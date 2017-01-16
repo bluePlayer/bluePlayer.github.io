@@ -27,6 +27,7 @@
         <li><input type="button" id="d3ShowReel" value="D3 Show Reel" /></li>
         <li><input type="button" id="barChartsCat" value="Bar Charts" /></li>
         <li><input type="button" id="forceDirGraphCat" value="Force Directed Graph" /></li>
+        <li><input type="button" id="radialStackedBarCharts" value="Radial Stacker Bar Chart 1" /></li>
     </ul>
     <ul id="barChartsUl">
         <li>Bar Charts: </li>
@@ -109,6 +110,11 @@
 
         $("#forceDirGraphMultiRel").click(function (event) {
             $("#iframe").attr("src", "projects/D3/ForceDirectedGraph/ForceLayoutClickToGroupNodesMultiRelations/index.html");
+        });
+
+        $("#radialStackedBarCharts").click(function (event) {
+            $("#iframe").attr("src", "projects/D3/RadialStackedBarChart1/index.html");
+            event.preventDefault();
         });
     </script>
 </body>
