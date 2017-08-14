@@ -20,6 +20,7 @@
         <li>Phaser Projects: </li>
         <li><input type="button" id="wml" value="Wonders in math Land" /></li>
         <li><input type="button" id="sandhi" value="Sandhi Invaders" /></li>
+        <li><input type="button" id="sandhi-P2" value="Sandhi Flowers" /></li>
         <li><input type="button" id="myConstructor" value="Furniture Constructor" /></li>
     </ul>
     <ul id="d3js">
@@ -52,6 +53,11 @@
 
         $("#sandhi").click(function (event) {
             $("#iframe").attr("src", "projects/Phaser/sandhi/index.html");
+            event.preventDefault();
+        });
+        
+        $("#sandhi-P2").click(function (event) {
+            $("#iframe").attr("src", "projects/Phaser/sandhi-P2/index.html");
             event.preventDefault();
         });
 

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>WML.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title=""></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/WML.html">WML</a></li>
+                                <li><a href="../classes/WML.Const.html">WML.Const</a></li>
+                                <li><a href="../classes/WML.Events.html">WML.Events</a></li>
+                                <li><a href="../classes/WML.Exceptions.html">WML.Exceptions</a></li>
+                            </ul>
+                
+                            <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/WML.html">WML</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: WML.js</h1>
+                        
+                        <div class="file">
+                            <pre class="code prettyprint linenums">
+                        /**
+                         * Wonders in Math Land - a memory game made with Phaser 2.2.2
+                         * @module WML
+                         * @class WML
+                         * @main WML
+                         * @author Vladimir Zakar aka bluePlayer/spinnerbox. https://github.com/bluePlayer/practices
+                         */
+                        window.WML = window.WML || (function (windowDocumentObject) {&#x27;use strict&#x27;
+                            var
+                                /**
+                                 * windowDocument is a reference name for the global object window.document
+                                 * @property windowDocument
+                                 * @private
+                                 * @type Object
+                                 * @default window.document
+                                 */
+                                windowDocument = windowDocumentObject,
+                        
+                                /**
+                                 * Object that contains application configuration.
+                                 * @property config
+                                 * @private
+                                 * @type Object
+                                 * @default null
+                                 */
+                                config = null,
+                        
+                                /**
+                                 * parent is a reference name for the WML object, so that you don&#x27;t have to write all the time &#x27;this&#x27;.
+                                 * @property parent
+                                 * @private
+                                 * @type Object
+                                 * @default null
+                                 */
+                                parent = null,
+                        
+                                /**
+                                 * score is private variable that keeps track of overall game score, made my the player.
+                                 * @property score
+                                 * @private
+                                 * @type Integer
+                                 * @default 0
+                                 */
+                                score = 0,
+                        
+                                /**
+                                 * gameProgress is private variable that keeps track of the current game progress i.e number of available levels for playing.
+                                 * @property gameProgress
+                                 * @private
+                                 * @type Integer
+                                 * @default 1
+                                 */
+                                gameProgress = 1,
+                        
+                                /**
+                                 * debugMode is private variable that enables logging when true and disables it when false.
+                                 * @property debugMode
+                                 * @private
+                                 * @type Boolean
+                                 * @default true
+                                 */
+                                debugMode = true,
+                        
+                                /**
+                                 * STAGE_WIDTH is private constant that keeps the value of the stage width = 640.
+                                 * @property STAGE_WIDTH
+                                 * @private
+                                 * @type Integer
+                                 * @default 640
+                                 */
+                                STAGE_WIDTH = 640,
+                        
+                                /**
+                                 * STAGE_HEIGHT is private constant that keeps the value of the stage height = 480.
+                                 * @property STAGE_WIDTH
+                                 * @private
+                                 * @type Integer
+                                 * @default 480
+                                 */
+                                STAGE_HEIGHT = 480,
+                        
+                                /**
+                                 * LOWER_HEIGHT is private constant that holds the lowest height when resizing for smalled screens, height = 260
+                                 * @property LOWER_HEIGHT
+                                 * @private
+                                 * @type Integer
+                                 * @default 260
+                                 */
+                                LOWER_HEIGHT = 260,
+                        
+                                /**
+                                 * HTML_CONTAINER is private constant that holds the name of the div container where should the game be loaded.
+                                 * @property HTML_CONTAINER
+                                 * @private
+                                 * @type String
+                                 * @default &#x27;gameContainer&#x27;
+                                 */
+                                HTML_CONTAINER = &#x27;gameContainer&#x27;,
+                        
+                                /**
+                                 * game is private variable that holds the game object and it is accessible trough WML.gameObject from outside.
+                                 * @property game
+                                 * @private
+                                 * @type Phaser.Game
+                                 * @default new Phaser.Game(STAGE_WIDTH, STAGE_HEIGHT, Phaser.AUTO, HTML_CONTAINER)
+                                 */
+                                game = new Phaser.Game(STAGE_WIDTH, STAGE_HEIGHT, Phaser.AUTO, HTML_CONTAINER),
+                                
+                                siPreloader = {
+                                    loadingLabel: null,
+                                    preloaderBottom: null,
+                                    preloaderTop: null,
+                                    loadingObjects: null,
+                                    loadingBarYPos: 250,
+                                    ready:false,
+                                    loadingTween: null
+                                };
+                        
+                            return {
+                        
+                                /**
+                                 * Contains exceptions for handling software errors.
+                                 * @namespace WML
+                                 * @class Exceptions 
+                                 */
+                                Exceptions: {},
+                        
+                                /**
+                                 * Contains constants created with Object.defineProperty() method in the initialization process of the game.
+                                 * All members of this class are enumerable, non-writable and non-configurable
+                                 * @namespace WML
+                                 * @class Const 
+                                 */
+                                Const: {},
+                        
+                                /**
+                                 * Contains game-wide event listeners. 
+                                 * @namespace WML
+                                 * @class Events 
+                                 */
+                                Events: {},
+                        
+                                /**
+                                 * @class WML 
+                                 */
+                                 
+                                createSiPreloader: function () {
+                                    siPreloader.loadingObjects = game.add.group();
+                        
+                                    siPreloader.loadingLabel = game.add.sprite(220, siPreloader.loadingBarYPos - 70, parent.ImageAssetKeys.LOADING_LABEL);
+                                    siPreloader.loadingObjects.add(siPreloader.loadingLabel);
+                        
+                                    siPreloader.preloaderBottom = game.add.graphics(265, siPreloader.loadingBarYPos);
+                                    siPreloader.preloaderBottom.beginFill(0x575757, 1);
+                                    siPreloader.preloaderBottom.drawRect(0, 0, 104, 15);
+                                    siPreloader.loadingObjects.add(siPreloader.preloaderBottom);
+                                    
+                                    siPreloader.preloaderTop = game.add.graphics(265, siPreloader.loadingBarYPos);
+                                    siPreloader.preloaderTop.beginFill(0xA8A8A8, 1);
+                                    siPreloader.preloaderTop.drawRect(2, 2, 0, 11);
+                                    siPreloader.loadingObjects.add(siPreloader.preloaderTop);
+                                    return siPreloader;
+                                },
+                        
+                                /**
+                                 * SoundAssetKeys contains constants, string keys for referencing sound objects in the game. 
+                                 * @property SoundAssetKeys
+                                 * @private
+                                 * @type Object
+                                 * @default {}
+                                 */
+                                SoundAssetKeys: {},
+                        
+                                /**
+                                 * ImageAssetKeys contains constants, string keys for referencing image/spritesheet objects in the game. 
+                                 * @property ImageAssetKeys
+                                 * @private
+                                 * @type Object
+                                 * @default {}
+                                 */
+                                ImageAssetKeys: {},
+                        
+                                /**
+                                 * gameObject is a game-wide reference to the Phaser.Game instance created when initializing the game.
+                                 * @property gameObject
+                                 * @private
+                                 * @type Phaser.Game
+                                 * @default game
+                                 */
+                                gameObject: game,
+                        
+                                /**
+                                 * Returns current value of debugMode, true or false.
+                                 * @method debugMode
+                                 * @return {Boolean}
+                                 */
+                                debugMode: function () {
+                                    return debugMode;
+                                },
+                        
+                                /**
+                                 * Returns current value of score.
+                                 * @method getScore
+                                 * @return {Integer}
+                                 */
+                                getScore: function () {
+                                    return score;
+                                },
+                        
+                                /**
+                                 * Returns current value of gameProgress, 1 to 27.
+                                 * @method getGameProgress
+                                 * @return {Integer}
+                                 */
+                                getGameProgress: function () {
+                                    return gameProgress;
+                                },
+                        
+                                /**
+                                 * addConstant(MyObject, constantName, constantValue) creates new constant in MyObject with constantName as name and 
+                                 * constantValue as value. If constantValue is null that the value of the new constant will equal to its name.
+                                 * @method addConstant
+                                 * @param {Object} MyObject object where this constant should be created
+                                 * @param {String} constantName name of the new constant, usually with upper case letters and underscores.
+                                 * @param {Object} constantValue value of the new constant. If set to null the new constant will have the name as the value.
+                                 */
+                                addConstant: function (MyObject, constantName, constantValue) {
+                                    if (constantValue === undefined || constantValue === null) {
+                                        constantValue = constantName;
+                                    }
+                                    if (MyObject === null || MyObject === undefined) {
+                                        MyObject = {};
+                                    }
+                                    Object.defineProperty(MyObject, constantName, {
+                                        configurable: false,
+                                        enumerable: true,
+                                        value: constantValue,
+                                        writable: false
+                                    });
+                                },
+                        
+                                loadSpriteSheet: function (keyName, keyValue, url, width, height, numOfFrames) {
+                                    parent.addConstant(parent.ImageAssetKeys, keyName, keyValue);
+                                    game.load.spritesheet(parent.ImageAssetKeys[keyName], url, width, height, numOfFrames);
+                                },
+                                loadImage: function (keyName, keyValue, url) {
+                                    parent.addConstant(parent.ImageAssetKeys, keyName, keyValue);
+                                    game.load.image(parent.ImageAssetKeys[keyName], url);
+                                },
+                                loadAudio: function (keyName, keyValue, arrayOfUrls) {
+                                    parent.addConstant(parent.SoundAssetKeys, keyName, keyValue);
+                                    game.load.audio(parent.SoundAssetKeys[keyName], arrayOfUrls, true);
+                                },
+                                namespace: function (namespaceStr, inheritObject, newObject) {
+                                    var parts = namespaceStr.split(&#x27;.&#x27;),
+                                        helpObject = {},
+                                        _this = this,
+                                        i = 0,
+                                        prop = {};
+                        
+                                    if (inheritObject === null || inheritObject === undefined) {
+                                        inheritObject = {};
+                                    }
+                                    helpObject.prototype = Object.create(inheritObject);
+                        
+                                    if (parts[0] === _this.Const.GAME_NAME) {
+                                        parts = parts.slice(1);
+                                    }
+                        
+                                    for (i = 0; i &lt; parts.length; i += 1) {
+                                        if (_this[parts[i]] === undefined) {
+                                            for (prop in newObject) {
+                                                if (newObject.hasOwnProperty(prop)) {
+                                                    helpObject[prop] = newObject[prop];
+                                                }
+                                            }
+                                            _this[parts[i]] = helpObject;
+                                        }
+                                        _this = _this[parts[i]];
+                                    }
+                                    return _this;
+                                },
+                                init: function (configObject) {
+                                    config = configObject;
+                                    parent = this;
+                                    
+                                    parent.addConstant(parent.Const, &#x27;GAME_NAME&#x27;, &#x27;Wonders in Math Land&#x27;);
+                                    parent.addConstant(parent.Const, &#x27;VERSION&#x27;, &#x27;4.0.0&#x27;);
+                                    parent.addConstant(parent.Const, &#x27;STAGE_WIDTH&#x27;, STAGE_WIDTH);
+                                    parent.addConstant(parent.Const, &#x27;STAGE_HEIGHT&#x27;, STAGE_HEIGHT);LOWER_HEIGHT
+                                    parent.addConstant(parent.Const, &#x27;LOWER_HEIGHT&#x27;, LOWER_HEIGHT);
+                                    parent.addConstant(parent.Const, &#x27;TWEEN_LINEAR&#x27;, &#x27;Linear&#x27;);
+                                    parent.addConstant(parent.Const, &#x27;FADE_DURATION&#x27;, 500);
+                                    parent.addConstant(parent.Const, &#x27;LEVELS_COUNT&#x27;, 21);
+                                    parent.addConstant(parent.Const, &#x27;LEVELS_PER_ROW&#x27;, 7);
+                                    parent.addConstant(parent.Const, &#x27;BACKGROUND_COLOR&#x27;, &#x27;#C0C0C0&#x27;);
+                                    parent.addConstant(parent.Const, &#x27;BLOG_LINK&#x27;, &#x27;http://spinnerbox.blogspot.com&#x27;);
+                                    parent.addConstant(parent.Const, &#x27;BLOG_NAME&#x27;, &#x27;Spinnerbox&#x27;);
+                                    parent.addConstant(parent.Const, &#x27;GAME_LINK&#x27;, &#x27;http://spinnerbox.blogspot.com&#x27;);
+                                    parent.addConstant(parent.Const, &#x27;GAME_LINK_NAME&#x27;, &#x27;Wonders_in_Math_Land&#x27;);
+                                    parent.addConstant(parent.Const, &#x27;TWITTER_URL&#x27;, null);
+                                    parent.addConstant(parent.Const, &#x27;FACEBOOK_URL&#x27;, null);
+                                    parent.addConstant(parent.Const, &#x27;BLOG_URL&#x27;, null);
+                        
+                                    parent.addConstant(parent.Boot, &#x27;KEY&#x27;, &#x27;BOOT&#x27;);
+                                    game.state.add(parent.Boot.KEY, parent.Boot);
+                                    
+                                    parent.addConstant(parent.Preloader, &#x27;KEY&#x27;, &#x27;PRELOADER&#x27;);
+                                    game.state.add(parent.Preloader.KEY, parent.Preloader);
+                                    
+                                    parent.addConstant(parent.MainMenuScreen, &#x27;KEY&#x27;, &#x27;MAIN_MENU_SCREEN&#x27;);
+                                    game.state.add(parent.MainMenuScreen.KEY, parent.MainMenuScreen);
+                                    
+                                    parent.addConstant(parent.LevelsScreen, &#x27;KEY&#x27;, &#x27;LEVELS_SCREEN&#x27;);
+                                    game.state.add(parent.LevelsScreen.KEY, parent.LevelsScreen);
+                                    
+                                    parent.addConstant(parent.HelpScreen, &#x27;KEY&#x27;, &#x27;HELP_SCREEN&#x27;);
+                                    game.state.add(parent.HelpScreen.KEY, parent.HelpScreen);
+                                    
+                                    parent.addConstant(parent.GameScreen, &#x27;KEY&#x27;, &#x27;GAME_SCREEN&#x27;);
+                                    game.state.add(parent.GameScreen.KEY, parent.GameScreen);
+                        
+                                    game.state.start(parent.Boot.KEY);
+                                }
+                            };
+                            }(window.document));
+                        
+                        window.document.addEventListener(&quot;DOMContentLoaded&quot;, function (event) {&#x27;use strict&#x27;;
+                            var wml = window.WML,
+                                config = {&quot;event&quot;: event};
+                        
+                            wml.init(config);
+                            });
+                        /*   
+                        function getBrowserId () {
+                        
+                            var
+                                aKeys = [&quot;MSIE&quot;, &quot;Firefox&quot;, &quot;Safari&quot;, &quot;Chrome&quot;, &quot;Opera&quot;],
+                                sUsrAg = navigator.userAgent, nIdx = aKeys.length - 1;
+                        
+                            for (nIdx; nIdx &gt; -1 &amp;&amp; sUsrAg.indexOf(aKeys[nIdx]) === -1; nIdx--);
+                        
+                            return aKeys[nIdx];
+                        
+                        }
+                        */
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

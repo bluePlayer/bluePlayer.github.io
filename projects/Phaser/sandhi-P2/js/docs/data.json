@@ -1,0 +1,357 @@
+{
+    "project": {},
+    "files": {
+        "WML.js": {
+            "name": "WML.js",
+            "modules": {
+                "WML": 1
+            },
+            "classes": {
+                "WML": 1,
+                "WML.Exceptions": 1,
+                "WML.Const": 1,
+                "WML.Events": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "WML": 1
+            }
+        }
+    },
+    "modules": {
+        "WML": {
+            "name": "WML",
+            "submodules": {},
+            "classes": {
+                "WML": 1,
+                "WML.Exceptions": 1,
+                "WML.Const": 1,
+                "WML.Events": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "WML": 1
+            },
+            "tag": "main",
+            "file": "WML.js",
+            "line": 136,
+            "description": "Wonders in Math Land - a memory game made with Phaser 2.2.2",
+            "itemtype": "main"
+        }
+    },
+    "classes": {
+        "WML": {
+            "name": "WML",
+            "shortname": "WML",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "WML",
+            "namespace": "WML",
+            "file": "WML.js",
+            "line": 143,
+            "description": "Wonders in Math Land - a memory game made with Phaser 2.2.2"
+        },
+        "WML.Exceptions": {
+            "name": "WML.Exceptions",
+            "shortname": "WML.Exceptions",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "WML",
+            "namespace": "WML",
+            "file": "WML.js",
+            "line": 121,
+            "description": "Contains exceptions for handling software errors."
+        },
+        "WML.Const": {
+            "name": "WML.Const",
+            "shortname": "WML.Const",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "WML",
+            "namespace": "WML",
+            "file": "WML.js",
+            "line": 128,
+            "description": "Contains constants created with Object.defineProperty() method in the initialization process of the game.\nAll members of this class are enumerable, non-writable and non-configurable"
+        },
+        "WML.Events": {
+            "name": "WML.Events",
+            "shortname": "WML.Events",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "WML",
+            "namespace": "WML",
+            "file": "WML.js",
+            "line": 136,
+            "description": "Contains game-wide event listeners."
+        }
+    },
+    "classitems": [
+        {
+            "file": "WML.js",
+            "line": 10,
+            "description": "windowDocument is a reference name for the global object window.document",
+            "itemtype": "property",
+            "name": "windowDocument",
+            "access": "private",
+            "tagname": "",
+            "type": "Object",
+            "default": "window.document",
+            "class": "WML",
+            "module": "WML"
+        },
+        {
+            "file": "WML.js",
+            "line": 19,
+            "description": "Object that contains application configuration.",
+            "itemtype": "property",
+            "name": "config",
+            "access": "private",
+            "tagname": "",
+            "type": "Object",
+            "default": "null",
+            "class": "WML",
+            "module": "WML"
+        },
+        {
+            "file": "WML.js",
+            "line": 28,
+            "description": "parent is a reference name for the WML object, so that you don't have to write all the time 'this'.",
+            "itemtype": "property",
+            "name": "parent",
+            "access": "private",
+            "tagname": "",
+            "type": "Object",
+            "default": "null",
+            "class": "WML",
+            "module": "WML"
+        },
+        {
+            "file": "WML.js",
+            "line": 37,
+            "description": "score is private variable that keeps track of overall game score, made my the player.",
+            "itemtype": "property",
+            "name": "score",
+            "access": "private",
+            "tagname": "",
+            "type": "Integer",
+            "default": "0",
+            "class": "WML",
+            "module": "WML"
+        },
+        {
+            "file": "WML.js",
+            "line": 46,
+            "description": "gameProgress is private variable that keeps track of the current game progress i.e number of available levels for playing.",
+            "itemtype": "property",
+            "name": "gameProgress",
+            "access": "private",
+            "tagname": "",
+            "type": "Integer",
+            "default": "1",
+            "class": "WML",
+            "module": "WML"
+        },
+        {
+            "file": "WML.js",
+            "line": 55,
+            "description": "debugMode is private variable that enables logging when true and disables it when false.",
+            "itemtype": "property",
+            "name": "debugMode",
+            "access": "private",
+            "tagname": "",
+            "type": "Boolean",
+            "default": "true",
+            "class": "WML",
+            "module": "WML"
+        },
+        {
+            "file": "WML.js",
+            "line": 64,
+            "description": "STAGE_WIDTH is private constant that keeps the value of the stage width = 640.",
+            "itemtype": "property",
+            "name": "STAGE_WIDTH",
+            "access": "private",
+            "tagname": "",
+            "type": "Integer",
+            "default": "640",
+            "class": "WML",
+            "module": "WML"
+        },
+        {
+            "file": "WML.js",
+            "line": 73,
+            "description": "STAGE_HEIGHT is private constant that keeps the value of the stage height = 480.",
+            "itemtype": "property",
+            "name": "STAGE_WIDTH",
+            "access": "private",
+            "tagname": "",
+            "type": "Integer",
+            "default": "480",
+            "class": "WML",
+            "module": "WML"
+        },
+        {
+            "file": "WML.js",
+            "line": 82,
+            "description": "LOWER_HEIGHT is private constant that holds the lowest height when resizing for smalled screens, height = 260",
+            "itemtype": "property",
+            "name": "LOWER_HEIGHT",
+            "access": "private",
+            "tagname": "",
+            "type": "Integer",
+            "default": "260",
+            "class": "WML",
+            "module": "WML"
+        },
+        {
+            "file": "WML.js",
+            "line": 91,
+            "description": "HTML_CONTAINER is private constant that holds the name of the div container where should the game be loaded.",
+            "itemtype": "property",
+            "name": "HTML_CONTAINER",
+            "access": "private",
+            "tagname": "",
+            "type": "String",
+            "default": "'gameContainer'",
+            "class": "WML",
+            "module": "WML"
+        },
+        {
+            "file": "WML.js",
+            "line": 100,
+            "description": "game is private variable that holds the game object and it is accessible trough WML.gameObject from outside.",
+            "itemtype": "property",
+            "name": "game",
+            "access": "private",
+            "tagname": "",
+            "type": "Phaser.Game",
+            "default": "new Phaser.Game(STAGE_WIDTH, STAGE_HEIGHT, Phaser.AUTO, HTML_CONTAINER)",
+            "class": "WML",
+            "module": "WML"
+        },
+        {
+            "file": "WML.js",
+            "line": 165,
+            "description": "SoundAssetKeys contains constants, string keys for referencing sound objects in the game.",
+            "itemtype": "property",
+            "name": "SoundAssetKeys",
+            "access": "private",
+            "tagname": "",
+            "type": "Object",
+            "default": "{}",
+            "class": "WML",
+            "module": "WML",
+            "namespace": "WML"
+        },
+        {
+            "file": "WML.js",
+            "line": 174,
+            "description": "ImageAssetKeys contains constants, string keys for referencing image/spritesheet objects in the game.",
+            "itemtype": "property",
+            "name": "ImageAssetKeys",
+            "access": "private",
+            "tagname": "",
+            "type": "Object",
+            "default": "{}",
+            "class": "WML",
+            "module": "WML",
+            "namespace": "WML"
+        },
+        {
+            "file": "WML.js",
+            "line": 183,
+            "description": "gameObject is a game-wide reference to the Phaser.Game instance created when initializing the game.",
+            "itemtype": "property",
+            "name": "gameObject",
+            "access": "private",
+            "tagname": "",
+            "type": "Phaser.Game",
+            "default": "game",
+            "class": "WML",
+            "module": "WML",
+            "namespace": "WML"
+        },
+        {
+            "file": "WML.js",
+            "line": 192,
+            "description": "Returns current value of debugMode, true or false.",
+            "itemtype": "method",
+            "name": "debugMode",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "WML",
+            "module": "WML",
+            "namespace": "WML"
+        },
+        {
+            "file": "WML.js",
+            "line": 201,
+            "description": "Returns current value of score.",
+            "itemtype": "method",
+            "name": "getScore",
+            "return": {
+                "description": "",
+                "type": "Integer"
+            },
+            "class": "WML",
+            "module": "WML",
+            "namespace": "WML"
+        },
+        {
+            "file": "WML.js",
+            "line": 210,
+            "description": "Returns current value of gameProgress, 1 to 27.",
+            "itemtype": "method",
+            "name": "getGameProgress",
+            "return": {
+                "description": "",
+                "type": "Integer"
+            },
+            "class": "WML",
+            "module": "WML",
+            "namespace": "WML"
+        },
+        {
+            "file": "WML.js",
+            "line": 219,
+            "description": "addConstant(MyObject, constantName, constantValue) creates new constant in MyObject with constantName as name and \nconstantValue as value. If constantValue is null that the value of the new constant will equal to its name.",
+            "itemtype": "method",
+            "name": "addConstant",
+            "params": [
+                {
+                    "name": "MyObject",
+                    "description": "object where this constant should be created",
+                    "type": "Object"
+                },
+                {
+                    "name": "constantName",
+                    "description": "name of the new constant, usually with upper case letters and underscores.",
+                    "type": "String"
+                },
+                {
+                    "name": "constantValue",
+                    "description": "value of the new constant. If set to null the new constant will have the name as the value.",
+                    "type": "Object"
+                }
+            ],
+            "class": "WML",
+            "module": "WML",
+            "namespace": "WML"
+        }
+    ],
+    "warnings": []
+}

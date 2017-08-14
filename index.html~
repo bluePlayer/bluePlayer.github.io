@@ -2,25 +2,121 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>D3 Show Reel</title>
+    <title>JavaScript Exercises and Projects</title>
     <link rel="icon" type="image/png" size="16x16" href="assets/images/favicon-16x16.png">
     <!--[if lt IE 9]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <style>
-        svg {
-          font-family: "Helvetica Neue", Helvetica;
-        }
-        .line {
-          fill: none;
-          stroke: #000;
-          stroke-width: 2px;
+        ul li {
+            display: inline;
         }
     </style>
 </head>
 <body>
-    <h2>D3 Show Reel</h2>
-    <script src="https://d3js.org/d3.v3.min.js"></script>
-    <script src="js/app.js"></script>
+    <h2>JavaScript Exercises and Projects - BluePlayer</h2>
+    <a href="https://github.com/blueplayer">BluePlayer GitHub</a>
+    <ul id="phaser">
+        <li>Phaser Projects: </li>
+        <li><input type="button" id="wml" value="Wonders in math Land" /></li>
+        <li><input type="button" id="sandhi" value="Sandhi Invaders" /></li>
+        <li><input type="button" id="sandhi-P2" value="Sandhi Flowers" /></li>
+        <li><input type="button" id="myConstructor" value="Furniture Constructor" /></li>
+    </ul>
+    <ul id="d3js">
+        <li>D3js Exercises: </li>
+        <li><input type="button" id="d3ShowReel" value="D3 Show Reel" /></li>
+        <li><input type="button" id="barChartsCat" value="Bar Charts" /></li>
+        <li><input type="button" id="forceDirGraphCat" value="Force Directed Graph" /></li>
+        <li><input type="button" id="radialStackedBarCharts" value="Radial Stacker Bar Chart 1" /></li>
+    </ul>
+    <ul id="barChartsUl">
+        <li>Bar Charts: </li>
+        <li><input type="button" id="barChart" value="Bar Chart" /></li>
+        <li><input type="button" id="barChartNeg" value="Bar Chart with Negative Values" /></li>
+        <li><input type="button" id="sortableBarChart" value="Sortable Bar Chart" /></li>
+        <li><input type="button" id="sortableTableWithBars" value="Sortable Table with Bars" /></li>
+        <li><input type="button" id="stackedBarChart" value="Stacked Bar Chart" /></li>
+    </ul>
+    <ul id="forceDirGraphUl">
+        <li>Bar Charts: </li>
+        <li><input type="button" id="forceDirGraphMultiRel" value="Force Layout - Multiple Relations" /></li>
+    </ul>
+    <iframe id="iframe" src="projects/Phaser/wml/index.html" width="1280" height="800"></iframe>
+
+    <script src="js/jquery.min.js"></script>
+    <script>
+        $("#wml").click(function (event) {
+            $("#iframe").attr("src", "projects/Phaser/wml/index.html");
+            event.preventDefault();
+        });
+
+        $("#sandhi").click(function (event) {
+            $("#iframe").attr("src", "projects/Phaser/sandhi/index.html");
+            event.preventDefault();
+        });
+
+        $("#myConstructor").click(function (event) {
+            $("#iframe").attr("src", "projects/Phaser/myconstructor/index.html");
+            event.preventDefault();
+        });
+
+        $("#d3ShowReel").click(function (event) {
+            $("#iframe").attr("src", "projects/D3/D3ShowReel/index.html");
+            event.preventDefault();
+        });
+
+        $("#barChart").click(function (event) {
+            $("#iframe").attr("src", "projects/D3/BarCharts/BarChart/index.html");
+            event.preventDefault();
+        });
+
+        $("#barChartNeg").click(function (event) {
+            $("#iframe").attr("src", "projects/D3/BarCharts/BarChartWithNegativeValues/index.html");
+            event.preventDefault();
+        });
+
+        $("#sortableBarChart").click(function (event) {
+            $("#iframe").attr("src", "projects/D3/BarCharts/SortableBarChart/index.html");
+            event.preventDefault();
+        });
+
+        $("#sortableTableWithBars").click(function (event) {
+            $("#iframe").attr("src", "projects/D3/BarCharts/SortableTableWithBars/index.html");
+            event.preventDefault();
+        });
+
+        $("#stackedBarChart").click(function (event) {
+            $("#iframe").attr("src", "projects/D3/BarCharts/StackedBarChart/index.html");
+            event.preventDefault();
+        });
+
+        $("#barChartsUl").hide();
+        $("#barChartsCat").click(function (event) {
+            if ($("#barChartsUl").is(":visible")) {
+                $("#barChartsUl").hide();
+            } else {
+                $("#barChartsUl").show();
+            }
+        });
+
+        $("#forceDirGraphUl").hide();
+        $("#forceDirGraphCat").click(function (event) {
+            if ($("#forceDirGraphUl").is(":visible")) {
+                $("#forceDirGraphUl").hide();
+            } else {
+                $("#forceDirGraphUl").show();
+            }
+        });
+
+        $("#forceDirGraphMultiRel").click(function (event) {
+            $("#iframe").attr("src", "projects/D3/ForceDirectedGraph/ForceLayoutClickToGroupNodesMultiRelations/index.html");
+        });
+
+        $("#radialStackedBarCharts").click(function (event) {
+            $("#iframe").attr("src", "projects/D3/RadialStackedBarChart1/index.html");
+            event.preventDefault();
+        });
+    </script>
 </body>
 </html>

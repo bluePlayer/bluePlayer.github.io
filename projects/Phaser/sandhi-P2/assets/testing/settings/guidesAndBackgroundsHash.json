@@ -1,0 +1,45 @@
+{
+"frames": {
+	"carpetGrass.jpg": {
+		"frame": {"x":641, "y":0, "w":640, "h":480},
+		"spriteSourceSize": {"x":0,"y":0,"w":640,"h":480},
+		"sourceSize": {"w":640,"h":480}
+	},
+	"grass.jpg": {
+		"frame": {"x":0, "y":481, "w":640, "h":480},
+		"spriteSourceSize": {"x":0,"y":0,"w":640,"h":480},
+		"sourceSize": {"w":640,"h":480}
+	},
+	"guide.png": {
+		"frame": {"x":0, "y":962, "w":640, "h":480},
+		"spriteSourceSize": {"x":0,"y":0,"w":640,"h":480},
+		"sourceSize": {"w":640,"h":480}
+	},
+	"marco.png": {
+		"frame": {"x":641, "y":962, "w":613, "h":472},
+		"spriteSourceSize": {"x":1,"y":0,"w":614,"h":472},
+		"sourceSize": {"w":614,"h":472}
+	},
+	"parket.jpg": {
+		"frame": {"x":641, "y":481, "w":640, "h":480},
+		"spriteSourceSize": {"x":0,"y":0,"w":640,"h":480},
+		"sourceSize": {"w":640,"h":480}
+	},
+	"sorcerer.png": {
+		"frame": {"x":1255, "y":962, "w":608, "h":450},
+		"spriteSourceSize": {"x":0,"y":0,"w":608,"h":450},
+		"sourceSize": {"w":608,"h":450}
+	},
+	"woodBg.jpg": {
+		"frame": {"x":0, "y":0, "w":640, "h":480},
+		"spriteSourceSize": {"x":0,"y":0,"w":640,"h":480},
+		"sourceSize": {"w":640,"h":480}
+	}
+
+},
+"meta": {
+	"image": "sprites.png",
+	"size": {"w": 1864, "h": 1443},
+	"scale": "1"
+}
+}
