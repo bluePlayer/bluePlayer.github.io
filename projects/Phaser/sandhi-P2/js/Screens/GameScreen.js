@@ -83,12 +83,6 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
             // sprites
             gameBgSprite = null,
             menuBgSprite = null,
-            //planetSurfaceSprite = null,
-            //atmosphereSprite = null,
-            //atmosphereBorderSprite = null,
-            //turretHouseSprite = null,
-            //cannonSprite = null,
-            //bombSprite = null,
             collisionBorder = null,
 
             // groups
@@ -361,20 +355,6 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
                 gameBgSprite = gameObject.add.sprite(0, 0, si.ImageAssetKeys.HIMALAYAS_BG);
                 bombGroup.add(gameBgSprite);
 
-                //planetSurfaceSprite = gameObject.add.sprite(0, 660, si.ImageAssetKeys.SMALL_SPRITES_ATLAS, "planetSurface.png");
-                //thisObject.gameObjects.add(planetSurfaceSprite);
-
-                //cannonSprite = gameObject.add.sprite(245, 680, si.ImageAssetKeys.SMALL_SPRITES_ATLAS, "cannon.png");
-                //gameObject.physics.enable(cannonSprite, phaser.Physics.ARCADE);
-                //cannonSprite.anchor.setTo(0.5, 1);
-                //turretGroup.add(cannonSprite);
-
-                //turretHouseSprite = gameObject.add.sprite(210, 655, si.ImageAssetKeys.SMALL_SPRITES_ATLAS, "turretHouse.png");
-                //turretGroup.add(turretHouseSprite);
-
-                //atmosphereSprite = gameObject.add.sprite(0, 625, si.ImageAssetKeys.SMALL_SPRITES_ATLAS, "atmosphere.png");
-                //turretGroup.add(atmosphereSprite);
-
                 collisionBorder = gameObject.add.sprite(0, si.Const.Graphics.COLLISION_BORDER_Y, si.ImageAssetKeys.COLLISION_BORDER);
                 gameObject.physics.enable(collisionBorder, phaser.Physics.ARCADE);
                 collisionBorder.body.checkCollision.up = true;
@@ -383,15 +363,6 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
                 collisionBorder.body.checkCollision.right = false;
                 collisionBorder.body.immovable = true;
                 thisObject.gameObjects.add(collisionBorder);
-                //turretGroup.add(atmosphereBorderSprite)
-                /*atmosphereBorderSprite = gameObject.add.sprite(0, 625, si.ImageAssetKeys.SMALL_SPRITES_ATLAS, "atmosphereBorder.png");
-                gameObject.physics.enable(atmosphereBorderSprite, phaser.Physics.ARCADE);
-                atmosphereBorderSprite.body.checkCollision.up = true;
-                atmosphereBorderSprite.body.checkCollision.down = false;
-                atmosphereBorderSprite.body.checkCollision.left = false;
-                atmosphereBorderSprite.body.checkCollision.right = false;
-                atmosphereBorderSprite.body.immovable = true;*/
-                //turretGroup.add(atmosphereBorderSprite);
 
                 waveTextField = gameObject.add.text(10, 10, si.generateWaveText(currentWaveArray.length), si.Utility.getTextStyle20());
                 waveTextField.visible = false;
@@ -591,16 +562,13 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
             update: function () {
 
                 var currentRule = null;
-                    //lavaCrater = null;
-
-                //cannonSprite.angle = si.Utility.radToDeg(gameObject.physics.arcade.angleToXY(cannonSprite, targetX, targetY)) + 90;
 
                 if (leftLetterBox !== null) {
 
                     if (gameObject.physics.arcade.overlap(collisionBorder, leftLetterBox.graphics) ||
                         gameObject.physics.arcade.overlap(collisionBorder, rightLetterBox.graphics)) {
 
-                        collisionBorder.y = -50;
+                        collisionBorder.y = -200;
                         leftLetterBox.boxText.text = "";
                         rightLetterBox.boxText.text = "";
 
@@ -634,7 +602,6 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
                         collisionBorder.y = si.Const.Graphics.COLLISION_BORDER_Y;
                         leftLetterBox.destroy();
                         rightLetterBox.destroy();
-                        si.setGameSpeed(letterSpeed);
                         menuPauseButton.visible = true;
                         si.resumeGame();
                         thisObject.nextRule();
@@ -714,6 +681,8 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
                     analogCodes = null,
                     dataObj = null,
                     waveLength = si.Utility.getCurrentWaveLength(currentWaveIndex);
+
+                si.setGameSpeed(si.Utility.parseInt(window.localStorage.getItem(si.Const.GAME_SPEED_WS_KEY)));
 
                 if (gameObject.input.keyboard.onPressCallback === null) {
                     gameObject.input.keyboard.addCallbacks(thisObject, null, null, thisObject.keypressHandler);
