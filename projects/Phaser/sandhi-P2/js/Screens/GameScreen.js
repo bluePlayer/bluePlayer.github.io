@@ -207,7 +207,7 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
                     saveButton.visible = false;
                     resetButton.visible = false;
                     helpButton.visible = false;
-                    testScreenButton.visible = false;
+                    //testScreenButton.visible = false;
                     savedLabel.visible = false;
                     reportBugLabel.visible = false;
                     beginnerCheckBoxLabel.visible = false;
@@ -237,7 +237,7 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
                     resumeButton.visible = true;
                     menuBgSprite.visible = true;
                     helpButton.visible = true;
-                    testScreenButton.visible = true;
+                    //testScreenButton.visible = true;
                     saveButton.visible = true;
                     //reportBugLabel.visible = true;
                     beginnerCheckBoxLabel.visible = true;
@@ -280,7 +280,7 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
                 saveButton.visible = false;
                 blogLinkButton.visible = false;
                 helpButton.visible = false;
-                testScreenButton.visible = false;
+                //testScreenButton.visible = false;
                 resumeButton.visible = false;
                 beginnerCheckBoxLabel.visible = false;
                 beginnerSpeedCheckBox.visible = false;
@@ -298,7 +298,7 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
                 saveButton.visible = true;
                 //blogLinkButton.visible = true;
                 helpButton.visible = true;
-                testScreenButton.visible = true;
+                //testScreenButton.visible = true;
                 resumeButton.visible = true;
                 beginnerCheckBoxLabel.visible = true;
                 beginnerSpeedCheckBox.visible = true;
@@ -375,7 +375,7 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
                 //atmosphereSprite = gameObject.add.sprite(0, 625, si.ImageAssetKeys.SMALL_SPRITES_ATLAS, "atmosphere.png");
                 //turretGroup.add(atmosphereSprite);
 
-                collisionBorder = gameObject.add.sprite(0, 625, si.ImageAssetKeys.COLLISION_BORDER);
+                collisionBorder = gameObject.add.sprite(0, si.Const.Graphics.COLLISION_BORDER_Y, si.ImageAssetKeys.COLLISION_BORDER);
                 gameObject.physics.enable(collisionBorder, phaser.Physics.ARCADE);
                 collisionBorder.body.checkCollision.up = true;
                 collisionBorder.body.checkCollision.down = false;
@@ -540,10 +540,10 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
                 resetButton.visible = false;
                 thisObject.menuObjects.add(resetButton);
 
-                testScreenButton = si.GoToScreen.Button(si.TestScreen.KEY, [thisObject.gameObjects, thisObject.menuObjects], 175, 450,
-                                                    si.ImageAssetKeys.STANDARD_BUTTONS_SHEET, thisObject, null, null, null, null, 17, 16, 16, 17);
-                testScreenButton.visible = false;
-                thisObject.menuObjects.add(testScreenButton);
+                //testScreenButton = si.GoToScreen.Button(si.TestScreen.KEY, [thisObject.gameObjects, thisObject.menuObjects], 175, 450,
+                                                    //si.ImageAssetKeys.STANDARD_BUTTONS_SHEET, thisObject, null, null, null, null, 17, 16, 16, 17);
+                //testScreenButton.visible = false;
+                //thisObject.menuObjects.add(testScreenButton);
 
                 savedLabel = gameObject.add.text(210, 455, 'Saved!', si.Utility.getTextStyle17());
                 savedLabel.visible = false;
@@ -590,14 +590,19 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
 
             update: function () {
 
-                var currentRule = null,
-                    lavaCrater = null;
+                var currentRule = null;
+                    //lavaCrater = null;
 
                 //cannonSprite.angle = si.Utility.radToDeg(gameObject.physics.arcade.angleToXY(cannonSprite, targetX, targetY)) + 90;
 
                 if (leftLetterBox !== null) {
 
-                    if (gameObject.physics.arcade.collide(collisionBorder, leftLetterBox.graphics)) {
+                    if (gameObject.physics.arcade.overlap(collisionBorder, leftLetterBox.graphics) ||
+                        gameObject.physics.arcade.overlap(collisionBorder, rightLetterBox.graphics)) {
+
+                        collisionBorder.y = -50;
+                        leftLetterBox.boxText.text = "";
+                        rightLetterBox.boxText.text = "";
 
                         gameObject.input.keyboard.addCallbacks(thisObject, null, null, null);
 
@@ -615,21 +620,18 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
                         hideComboLetterTextFieldTimer.start();
                         typingTextCharCodes = [];
 
-                        lavaCrater = gameObject.add.sprite(si.Utility.randomNumber(40, 440), si.Utility.randomNumber(665, 705), si.ImageAssetKeys.SMALL_SPRITES_ATLAS, "lavaCrater.png");
-                        lavaCrater.anchor.setTo(0.5, 0.5);
-                        cratersGroup.add(lavaCrater);
-
-                        thisObject.addExplosion(lavaCrater.x, lavaCrater.y);
+                        leftLetterBox.graphics.animations.play('splash');//, 30, false, true);
+                        rightLetterBox.graphics.animations.play('splash');//, 30, false, true);
 
                         wavePoints -= 1;
                         waveErrors += 1;
                         thisObject.updatePointsAndErrors();
 
-                        thisObject.nextRule();
-
                     }
 
-                    if (leftLetterBox.graphics.y <= si.Const.FLY_OFF_BORDER) {
+                    if (leftLetterBox.graphics.y <= si.Const.FLY_OFF_BORDER ||
+                        leftLetterBox.graphics.y >= si.Const.SINK_BORDER) {
+                        collisionBorder.y = si.Const.Graphics.COLLISION_BORDER_Y;
                         leftLetterBox.destroy();
                         rightLetterBox.destroy();
                         si.setGameSpeed(letterSpeed);
@@ -777,6 +779,8 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
 
                     }
 
+                    leftLetterBox.graphics.animations.play('floating');
+
                     // create right letter box
                     rightLetterText = currentWaveArray[currentLangRuleIndex].RIGHT_LETTER;
 
@@ -796,6 +800,8 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
 
                     }
 
+                    rightLetterBox.graphics.animations.play('floating');
+
                     letterComboText = currentWaveArray[currentLangRuleIndex].COMBINED_LETTER;
                     correctLetterTextField.text = letterComboText;
 
@@ -811,6 +817,7 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
                         if (newCharCode !== null) {
 
                             analogCodes = newCharCode.analogCodes;
+
                             for (j = 0; j < analogCodes.length; j += 1) {
 
                                 letterComboCharCodes.push(analogCodes[j]);
@@ -854,8 +861,8 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
 
                     currentRule = currentWaveArray[currentLangRuleIndex];
 
-                    thisObject.blowFlowers(leftLetterBox, leftLetterBox.graphics.x, leftLetterBox.graphics.y);
-                    thisObject.blowFlowers(rightLetterBox, rightLetterBox.graphics.x, rightLetterBox.graphics.y);
+                    thisObject.blowFlowers(leftLetterBox, leftLetterBox.graphics.x, leftLetterBox.graphics.y + si.Const.Graphics.PARTICLE_SHIFT_Y);
+                    thisObject.blowFlowers(rightLetterBox, rightLetterBox.graphics.x, rightLetterBox.graphics.y + si.Const.Graphics.PARTICLE_SHIFT_Y);
 
                     wavePoints += si.Utility.parseInt(currentRule.DIFFICULTY);
                     currentRule.userAnswerIsCorrect = true;
@@ -864,6 +871,7 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
                         screenTypingTextField.text = "";
                         correctMode = true;
                     }
+
                     screenTypingTextField.fill = "Green";
                     screenTypingTextField.text += key;
 

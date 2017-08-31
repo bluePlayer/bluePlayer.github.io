@@ -5,21 +5,27 @@ window.SI.namespace('LetterBox', {}, (function (si, phaser) {'use strict';
         letterSound = null,
         lettersGroup = null,
         screenObjectsGroup = null,
-        letterTimer = null;
+        letterTimer = null,
+
+        floatingAnim = null,
+        splashAnim = null;
 
     return {
-
         LetterBox: function (boxX, boxY, velocity, textData) {
             var graphics = null,
                 text = null,
                 shiftX = (textData.length === 2 ? 10 : 15),
-                shiftY = 8,
+                shiftY = 25,
                 letterBox = {
                     graphics: null,
                     boxText: null
                 };
 
-            graphics = si.gameObject.add.sprite(boxX, boxY, (textData.length < 3 ? si.ImageAssetKeys.BALLOON : si.ImageAssetKeys.BALLOON_WIDE));
+            graphics = si.gameObject.add.sprite(boxX, boxY, si.ImageAssetKeys.BALLOON_ANIM_ATLAS, 0);//(textData.length < 3 ? si.ImageAssetKeys.BALLOON_ANIM_ATLAS : si.ImageAssetKeys.BALLOON_WIDE), 0);
+            floatingAnim = graphics.animations.add('floating', si.GraphicsUtility.getFloatingAnimArray(), 30, true);
+            splashAnim = graphics.animations.add('splash', si.GraphicsUtility.getSplashAnimArray(), 30, false);
+
+            graphics.animations.play('floating');
 
             letterBox.graphics = graphics;
 
@@ -65,7 +71,7 @@ window.SI.namespace('LetterBox', {}, (function (si, phaser) {'use strict';
 
             letterBox.updatePosition = function () {
                 letterBox.boxText.x = letterBox.graphics.x;
-                letterBox.boxText.y = letterBox.graphics.y;
+                letterBox.boxText.y = letterBox.graphics.y - shiftY;
             };
 
             letterBox.hide = function () {

@@ -1,5 +1,5 @@
 /**
- * Sandhi Invaders - a typing game made with Phaser 2.2.2
+ * Sandhi Invaders - a typing game made with Phaser 2.6.2
  * @module SI
  * @class SI
  * @main SI

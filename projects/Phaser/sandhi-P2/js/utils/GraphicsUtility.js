@@ -1,5 +1,59 @@
 window.SI.namespace('GraphicsUtility', {}, (function(si, phaser) {'use strict';
+    var floatingAnimArray = [
+            "7 (1).png",
+            "7 (2).png",
+            "7 (3).png",
+            "7 (4).png",
+            "7 (5).png",
+            "7 (6).png",
+            "7 (7).png",
+            "7 (8).png",
+            "7 (9).png",
+            "7 (10).png",
+            "7 (11).png",
+            "7 (12).png",
+            "7 (13).png",
+            "7 (14).png",
+            "7 (15).png",
+            "7 (16).png",
+            "7 (17).png",
+            "7 (18).png",
+            "7 (19).png",
+            "7 (20).png",
+            "7 (21).png"
+        ],
+
+        splashAnimArray = [
+            "5_00006.png",
+            "5_00007.png",
+            "5_00008.png",
+            "5_00009.png",
+            "5_00010.png",
+            "5_00011.png",
+            "5_00012.png",
+            "5_00013.png",
+            "5_00014.png",
+            "5_00015.png",
+            "5_00016.png",
+            "5_00017.png",
+            "5_00018.png",
+            "5_00019.png",
+            "5_00020.png",
+            "5_00021.png",
+            "5_00022.png",
+            "5_00023.png",
+            "5_00024.png"
+        ];
+
     return {
+        getFloatingAnimArray: function () {
+            return floatingAnimArray;
+        },
+
+        getSplashAnimArray: function () {
+            return splashAnimArray;
+        },
+
         makeNewGraphicsObject: function (current, x, y, name, parent) {
 
             if (si.Utility.isTruthy(current)) {
