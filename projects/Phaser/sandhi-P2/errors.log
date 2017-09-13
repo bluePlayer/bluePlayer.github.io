@@ -1,0 +1,17 @@
+crosswalk-pkg com.game.sandhiflowers/app > errors.log
+
+[1m  Packaging /var/www/nodejs/Sandhi-Invaders/dev/P2/com.game.sandhiflowers/app[0m
+[1m  Skipping host setup check[0m
+[1m  Initializing build dir /tmp/kz602N[0m
+  + Copying app template from /usr/local/lib/node_modules/crosswalk-app-tools/app-template
+  + Loading 'android' platform backend undefined
+  + Building against API level android-23 undefined
+[2K[0G  + Creating com.game.sandhiflowers [......][2K[0G  + Creating com.game.sandhiflowers [done] 
+  + Defaulting to download channel stable undefined
+  + Looking for latest version in crosswalk/stable undefined
+  + Version null not found in 'stable', trying next channel undefined
+  + Looking for latest version in crosswalk/beta undefined
+  + Version null not found in 'beta', trying next channel undefined
+  + Looking for latest version in crosswalk/canary undefined
+  + Version null not found in 'canary', search failed undefined
+  + Logfiles at /tmp/crosswalk-app-tools-com.game.sandhiflowers undefined

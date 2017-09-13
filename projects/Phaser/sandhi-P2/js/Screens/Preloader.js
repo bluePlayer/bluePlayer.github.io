@@ -35,12 +35,14 @@ window.SI.namespace('Preloader', window.SI.Screen, (function (si) {'use strict';
             //si.loadSpriteSheet('RIPPLE', null, 'assets/images/ripple.png', 125, 563, 69);
             si.loadAtlasJSONArray('RIPPLE', null, 'assets/images/ripple.png', 'assets/settings/ripple.json');
 
+            si.loadImage('WATER_BG', null, 'assets/images/waterbg.png');
             si.loadImage('HIMALAYAS_BG', null, 'assets/images/himalayas.png');
             si.loadImage('BALLOON', null, 'assets/images/balloon.png');
             si.loadImage('BALLOON_WIDE', null, 'assets/images/balloon-wide.png');
             si.loadImage('FLOWER', null, 'assets/images/flower.png');
             si.loadImage('COLLISION_BORDER', null, 'assets/images/collisionBorder.png');
 
+            si.loadAtlasJSONHash('RIVER_ANIM_ATLAS', null, 'assets/images/River_anim.png', 'assets/settings/River_anim.json');
             si.loadAtlasJSONHash('BALLOON_ANIM_ATLAS', null, 'assets/images/balloon-anim.png', 'assets/settings/balloon-anim.json');
             si.loadAtlasJSONHash('SMALL_SPRITES_ATLAS', null, 'assets/images/smallSprites.png', 'assets/settings/smallSprites.json');
             si.loadAtlasJSONHash('BGS_SHEET_ATLAS', null, 'assets/images/bgsSheet.png', 'assets/settings/bgsSheet.json');

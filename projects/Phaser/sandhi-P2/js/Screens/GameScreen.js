@@ -73,7 +73,7 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
             playButton = null,
             helpButton = null,
             blogLinkButton = null,
-            testScreenButton = null,
+            //testScreenButton = null,
 
             // check boxes
             beginnerSpeedCheckBox = null,
@@ -81,15 +81,11 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
             advancedSpeedCheckBox = null,
 
             // sprites
+            waterBgSprite = null,
             gameBgSprite = null,
             menuBgSprite = null,
             collisionBorder = null,
-
-            // groups
-            bombGroup = null,
-            cratersGroup = null,
-            explosionsGroup = null,
-            turretGroup = null,
+            riverAnim = null,
 
             // sounds
             errorSound = null,
@@ -156,11 +152,7 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
                 helperComboCharCodes = [];
                 typingTextCharCodes = [];
 
-                bombGroup = gameObject.add.group();
                 thisObject.gameObjects = gameObject.add.group();
-                cratersGroup = gameObject.add.group();
-                turretGroup = gameObject.add.group();
-                explosionsGroup = gameObject.add.group();
                 thisObject.menuObjects = gameObject.add.group();
 
                 sandhiInvadersData = si.getSandhiInvadersData();
@@ -196,6 +188,8 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
                         rightLetterBox.unpause();
                     }
 
+                    riverAnim.animations.play('flowing');
+                    
                     menuPauseButton.visible = true;
                     menuBgSprite.visible = false;
                     saveButton.visible = false;
@@ -227,6 +221,8 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
                         resetButton.visible = true;
                     }
 
+                    riverAnim.animations.stop('flowing');
+                    
                     menuPauseButton.visible = false;
                     resumeButton.visible = true;
                     menuBgSprite.visible = true;
@@ -310,6 +306,7 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
                 musicSound.play('', 0, gameObject.sound.volume, true, true);
                 gameObject.input.keyboard.addCallbacks(thisObject, null, null, thisObject.keypressHandler);
                 thisObject.nextRule();
+                riverAnim.animations.play('flowing');
                 playButton.visible = false;
                 titleTextField.visible = false;
                 menuPauseButton.visible = true;
@@ -352,9 +349,6 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
                 myBackspaceKey.onDown.add(thisObject.sendOtherKey, thisObject);
 
                 // create scene objects
-                gameBgSprite = gameObject.add.sprite(0, 0, si.ImageAssetKeys.HIMALAYAS_BG);
-                bombGroup.add(gameBgSprite);
-
                 collisionBorder = gameObject.add.sprite(0, si.Const.Graphics.COLLISION_BORDER_Y, si.ImageAssetKeys.COLLISION_BORDER);
                 gameObject.physics.enable(collisionBorder, phaser.Physics.ARCADE);
                 collisionBorder.body.checkCollision.up = true;
@@ -363,6 +357,18 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
                 collisionBorder.body.checkCollision.right = false;
                 collisionBorder.body.immovable = true;
                 thisObject.gameObjects.add(collisionBorder);
+                
+                waterBgSprite = gameObject.add.sprite(0, 0, si.ImageAssetKeys.WATER_BG);
+                thisObject.gameObjects.add(waterBgSprite);
+                
+                riverAnim = gameObject.add.sprite(0, 0, si.ImageAssetKeys.RIVER_ANIM_ATLAS, 0);
+                riverAnim.scale.x = 2;
+                riverAnim.scale.y = 2;
+                riverAnim.animations.add('flowing', si.GraphicsUtility.riverAnimArray, 30, true);
+                thisObject.gameObjects.add(riverAnim);
+                
+                gameBgSprite = gameObject.add.sprite(0, 0, si.ImageAssetKeys.HIMALAYAS_BG);
+                thisObject.gameObjects.add(gameBgSprite);
 
                 waveTextField = gameObject.add.text(10, 10, si.generateWaveText(currentWaveArray.length), si.Utility.getTextStyle20());
                 waveTextField.visible = false;
@@ -588,8 +594,8 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
                         hideComboLetterTextFieldTimer.start();
                         typingTextCharCodes = [];
 
-                        leftLetterBox.graphics.animations.play('splash');//, 30, false, true);
-                        rightLetterBox.graphics.animations.play('splash');//, 30, false, true);
+                        leftLetterBox.graphics.animations.play('splash');
+                        rightLetterBox.graphics.animations.play('splash');
 
                         wavePoints -= 1;
                         waveErrors += 1;
@@ -614,21 +620,6 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
 
             enableDisableChkBox: function (speed) {
                 return (speed === si.getGameSpeed() ? 'checkBoxOn.png' : 'checkBoxOff.png');
-            },
-
-            addExplosion: function (x, y) {
-                var explodeSound = si.gameObject.add.audio(si.SoundAssetKeys.EXPLODE_SOUND),
-                    explosionSprite = gameObject.add.sprite(x, y, si.ImageAssetKeys.EXPLOSION);
-
-                explodeSound.play();
-                explosionSprite.anchor.setTo(0.5, 0.5);
-                explosionSprite.animations.add(si.ImageAssetKeys.EXPLOSION);
-                explosionSprite.animations.play(si.ImageAssetKeys.EXPLOSION).onComplete.addOnce(function () {
-                    var expl = this;
-
-                    explosionsGroup.removeAll();
-                }, explosionSprite);
-                explosionsGroup.add(explosionSprite);
             },
 
             blowFlowers: function (letterBoxSprite, x, y) {
@@ -664,10 +655,6 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
 
                 si.Utility.fadeOutGroup(thisObject.gameObjects).onComplete.add(tweenFunc, si);
                 si.Utility.fadeOutGroup(thisObject.menuObjects);
-                si.Utility.fadeOutGroup(bombGroup);
-                si.Utility.fadeOutGroup(cratersGroup);
-                si.Utility.fadeOutGroup(explosionsGroup);
-                si.Utility.fadeOutGroup(turretGroup);
 
             },
 

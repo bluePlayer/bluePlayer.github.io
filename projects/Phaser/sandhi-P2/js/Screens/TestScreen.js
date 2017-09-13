@@ -25,6 +25,8 @@ window.SI.namespace('TestScreen', window.SI.Screen, (function (si, phaser) {'use
         ripple = null,
         ballonAnim = null,
         ballonAnim1 = null,
+        
+        riverAnim = null,
 
         floatingAnimArray = [
             "7 (1).png",
@@ -70,6 +72,26 @@ window.SI.namespace('TestScreen', window.SI.Screen, (function (si, phaser) {'use
             "5_00022.png",
             "5_00023.png",
             "5_00024.png"
+        ],
+        
+        riverAnimArray = [
+            "river_00000.png",
+            "river_00001.png",
+            "river_00002.png",
+            "river_00003.png",
+            "river_00004.png",
+            "river_00005.png",
+            "river_00006.png",
+            "river_00007.png",
+            "river_00008.png",
+            "river_00009.png",
+            "river_00010.png",
+            "river_00011.png",
+            "river_00012.png",
+            "river_00013.png",
+            "river_00014.png",
+            "river_00015.png",
+            "river_00016.png"
         ],
 
         particleBurst = function (pointer) {
@@ -147,6 +169,11 @@ window.SI.namespace('TestScreen', window.SI.Screen, (function (si, phaser) {'use
            ripple.animations.add('wave');
            ripple.animations.play('wave');
            thisObject.menuObjects.add(ripple);
+           
+           riverAnim = gameObject.add.sprite(0, 200, si.ImageAssetKeys.RIVER_ANIM_ATLAS, 0);
+           riverAnim.animations.add('flowing', riverAnimArray, 30, true);
+           riverAnim.animations.play('flowing');
+           thisObject.menuObjects.add(riverAnim);
 
             exitGuideButton =
                 si.GoToScreen.Button(si.GameScreen.KEY, [thisObject.gameObjects, thisObject.menuObjects], 170, 670, si.ImageAssetKeys.STANDARD_BUTTONS_SHEET, thisObject,

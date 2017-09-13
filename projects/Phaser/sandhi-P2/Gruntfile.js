@@ -12,6 +12,7 @@ module.exports = function(grunt) {
                                 'js/utils/GameMessages.js',
                                 'js/utils/GameErrors.js',
                                 'js/utils/Utility.js',
+                                'js/utils/GraphicsUtility.js',
                                 'js/State.js',
                                 'js/Screens/Boot.js',
                                 'js/UI/SIButton.js',

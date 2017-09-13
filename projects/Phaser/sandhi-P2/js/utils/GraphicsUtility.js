@@ -43,6 +43,26 @@ window.SI.namespace('GraphicsUtility', {}, (function(si, phaser) {'use strict';
             "5_00022.png",
             "5_00023.png",
             "5_00024.png"
+        ],
+        
+        riverAnimArray = [
+            "river_00000.png",
+            "river_00001.png",
+            "river_00002.png",
+            "river_00003.png",
+            "river_00004.png",
+            "river_00005.png",
+            "river_00006.png",
+            "river_00007.png",
+            "river_00008.png",
+            "river_00009.png",
+            "river_00010.png",
+            "river_00011.png",
+            "river_00012.png",
+            "river_00013.png",
+            "river_00014.png",
+            "river_00015.png",
+            "river_00016.png"
         ];
 
     return {
