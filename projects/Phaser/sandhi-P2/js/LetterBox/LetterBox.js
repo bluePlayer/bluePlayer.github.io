@@ -68,6 +68,11 @@ window.SI.namespace('LetterBox', {}, (function (si, phaser) {'use strict';
                 letterBox.graphics.body.velocity.y = si.getGameSpeed();
                 letterBox.paused = false;
             };
+            
+            letterBox.hitWaterfall = function () {
+                letterBox.graphics.body.velocity.y = si.getGameSpeed();
+                letterBox.paused = false;
+            };
 
             letterBox.updatePosition = function () {
                 letterBox.boxText.x = letterBox.graphics.x;

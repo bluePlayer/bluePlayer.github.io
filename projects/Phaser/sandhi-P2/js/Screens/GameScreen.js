@@ -574,8 +574,13 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
                     if (gameObject.physics.arcade.overlap(collisionBorder, leftLetterBox.graphics) ||
                         gameObject.physics.arcade.overlap(collisionBorder, rightLetterBox.graphics)) {
 
+                        si.setGameSpeed(si.Const.SPEED_WATERFALL);
                         collisionBorder.y = -200;
+                        
+                        leftLetterBox.hitWaterfall();
                         leftLetterBox.boxText.text = "";
+                        
+                        rightLetterBox.hitWaterfall();
                         rightLetterBox.boxText.text = "";
 
                         gameObject.input.keyboard.addCallbacks(thisObject, null, null, null);
