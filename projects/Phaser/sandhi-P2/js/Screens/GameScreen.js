@@ -362,8 +362,6 @@ window.SI.namespace('GameScreen', window.SI.Screen, ( function(windowObj, si, ph
                 thisObject.gameObjects.add(waterBgSprite);
                 
                 riverAnim = gameObject.add.sprite(0, 0, si.ImageAssetKeys.RIVER_ANIM_ATLAS, 0);
-                riverAnim.scale.x = 2;
-                riverAnim.scale.y = 2;
                 riverAnim.animations.add('flowing', si.GraphicsUtility.riverAnimArray, 30, true);
                 thisObject.gameObjects.add(riverAnim);
                 
