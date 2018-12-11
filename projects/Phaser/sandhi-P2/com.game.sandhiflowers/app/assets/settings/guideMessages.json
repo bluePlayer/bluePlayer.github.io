@@ -1,9 +1,0 @@
-﻿[
-    "Sandhi Invaders is a typing game. There are several rules that you need to follow in order to finish the game. IAST alphabet is consisted of the following letters: a ā i ī u ū ṛ ṝ ḷ ḹ ṁ ḥ k kh g gh ñ c ch j jh ṅ ṭ ṭh ḍ ḍh ṇ t th d dh n p ph b bh m ś ṣ s h y r l v",
-    "Type: -a to get ā, -i to get ī, -u to get ū, .m to get ṁ, .n to get ṅ, n. to get ṇ, ~n to get ñ, 's to get ś, -r. to get ṝ, -l. to get ḹ, d.h to get ḍh and so forth...",
-    "Other letters of the alphabet are the same as in the english alphabet. Consult a teacher or install the Sanskrit software to get more information about the specific  rules in the game. There are 572 available rules separated in groups with 1, 2, 3, 4, 6, 8 and difficulty 10.",
-    "Accordingly, rule with difficulty 1 gives 1 point, rule with difficulty 6 gives 6 points, etc... If you don't know the current rule and letters touch the ground a new letter box appears with the answer for a short period of time.",
-    "There are 23 rules of difficulty 1, 273 of difficulty 2, 121 of difficulty 3, 8 with 4, 99 with 6, 44 with 8 and 4 with difficulty 10, equaling 572 rules with 1950 points. Separated in 14 waves each with 40rules, apart from the last one with 52 rules.",
-    "If the letters touch the planet surface one point is deducted from your points. If you type a letter which does not fit into the currently required sequence of letters one point is deducted from your points. Learn the rules and try to remember them. You cannot pass a wave if you havent answered correctly all rules. If that happens you are promoted to the next wave.",
-    "Good luck!"
-]
