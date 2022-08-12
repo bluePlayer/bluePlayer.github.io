@@ -18,6 +18,7 @@
     <a href="https://github.com/blueplayer">BluePlayer GitHub</a>
     <ul id="phaser">
         <li>Phaser Projects: </li>
+		<li><input type="button" id="sifc" value="Space Invasion: First Contact" /></li>
         <li><input type="button" id="wml" value="Wonders in math Land" /></li>
         <li><input type="button" id="sandhi" value="Sandhi Invaders" /></li>
         <li><input type="button" id="sandhi-P2" value="Sandhi Flowers" /></li>
@@ -46,6 +47,11 @@
 
     <script src="js/jquery.min.js"></script>
     <script>
+		$("#sifc").click(function (event) {
+            $("#iframe").attr("src", "projects/Phaser/sifc/index.html");
+            event.preventDefault();
+        });
+		
         $("#wml").click(function (event) {
             $("#iframe").attr("src", "projects/Phaser/wml/index.html");
             event.preventDefault();
